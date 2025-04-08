@@ -7,5 +7,5 @@ namespace: bankai                                # namespace to be deploy
 app_name: bankai                                 # name of the app, must be equal to the name of the deployment and docker image
 dockerhub_project: dataprocessor                  # name of the dockerhub project the image will be pushed to / pulled from
 version_file: ./Cargo.toml
-pull_etcd_config: true
 etcd_key: /bankai/api/envs/.env.stage
+pull_etcd_config: true
