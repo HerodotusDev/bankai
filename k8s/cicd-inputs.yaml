@@ -7,5 +7,5 @@ namespace: bankai
 app_name: bankai
 dockerhub_project: dataprocessor    
 etcd_key: /bankai/api/envs/.env.stage
-pull_etcd_config: true
 version_file: ./Cargo.toml
+pull_etcd_config: true
