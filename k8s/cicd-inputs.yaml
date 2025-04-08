@@ -3,9 +3,9 @@
 ### Inputs file is 'branch sensitive' - eg. if running a workflow based on branch x - inputs file from branch x will be used. (opposite to workflows)
 
 
-namespace: bankai                                # namespace to be deploy  
-app_name: bankai                                 # name of the app, must be equal to the name of the deployment and docker image
-dockerhub_project: dataprocessor                  # name of the dockerhub project the image will be pushed to / pulled from
+namespace: bankai
+app_name: bankai
+dockerhub_project: dataprocessor    
 etcd_key: /bankai/api/envs/.env.stage
 pull_etcd_config: true
 version_file: ./Cargo.toml
