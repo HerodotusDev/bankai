@@ -14,4 +14,4 @@ permissions:
 
 jobs:
   call-deploy:
-    uses: HerodotusDev/cicd/.github/workflows/build-and-deploy-bankai.yaml@arc
+    uses: HerodotusDev/cicd/.github/workflows/build-and-deploy.yaml@arc
