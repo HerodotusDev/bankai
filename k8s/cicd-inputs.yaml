@@ -3,7 +3,7 @@
 ### Inputs file is 'branch sensitive' - eg. if running a workflow based on branch x - inputs file from branch x will be used. (opposite to workflows)
 
 namespace: bankai
-app_names: [bankai-daemon, bankai-api]
+app_names: ["bankai-daemon", "bankai-api"]
 dockerhub_project: dataprocessor    
 etcd_key: .env.stage
 version_file: ./Cargo.toml
