@@ -1,0 +1,72 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bankai-daemon
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bankai-daemon
+  template:
+    metadata:
+      labels:
+        app: bankai-daemon
+    spec:
+      containers:
+        - name: bankai-daemon
+          ### placeholder to be set by cicd pipeline - dont change
+          image: <IMAGE>
+          envFrom:
+            - secretRef:
+                name: bankai-daemon-secret
+          ports:
+            - containerPort: 3001
+          resources:
+            requests:
+              cpu: '100m'
+              memory: '128Mi'
+            limits:
+              cpu: '1'
+              memory: '3G'
+          livenessProbe:
+            httpGet:
+              path: /status
+              port: 3001
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /status
+              port: 3001
+            initialDelaySeconds: 5
+            periodSeconds: 5
+          volumeMounts:
+          - name: batch-volume
+            mountPath: /app/batches
+      volumes:
+      - name: batch-volume
+        persistentVolumeClaim:
+          claimName: bankai-daemon-pvc            
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: bankai-daemon-service
+spec:
+  selector:
+    app: bankai-daemon
+  ports:
+    - port: 3001
+      targetPort: 3001
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: bankai-daemon-pvc
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 3Gi
+  storageClassName: lh-common
